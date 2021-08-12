@@ -1,0 +1,25 @@
+---
+
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+
+name: appcenter-review-checklist
+description: Adds a checklist to application PRs
+author: elementary
+
+branding:
+  icon: crosshair
+  color: green
+
+runs:
+  using: node12
+  main: dist/index.js
+
+inputs:
+  body:
+    description: Markdown body to add to the PR
+    required: true
+
+  token:
+    description: A GitHub API token
+    required: false
+    default: ${{ github.token }}
