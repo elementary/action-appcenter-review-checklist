@@ -4,15 +4,11 @@ const { context, getOctokit } = require('@actions/github')
 const BODY_BREAK = '<!-- appcenter-review-checklist -->'
 
 function includesChecklist (body) {
-  return body.includes(BODY_BREAK)
+  return body && body.includes(BODY_BREAK)
 }
 
 function addChecklist (body, checklist) {
-  return `${body}
-
-${BODY_BREAK}
-
-${checklist}`
+  return [body, BODY_BREAK, checklist].filter(s => s).join('\n\n')
 }
 
 async function run () {
