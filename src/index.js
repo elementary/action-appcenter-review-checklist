@@ -3,15 +3,15 @@ const { context, getOctokit } = require('@actions/github')
 
 const BODY_BREAK = '<!-- appcenter-review-checklist -->'
 
-function includesChecklist(body) {
+function includesChecklist (body) {
   return body && body.includes(BODY_BREAK)
 }
 
-function addChecklist(body, checklist) {
+function addChecklist (body, checklist) {
   return [body, BODY_BREAK, checklist].filter(s => s).join('\n\n')
 }
 
-async function run() {
+async function run () {
   const octokit = getOctokit(core.getInput('token', { required: true }))
 
   const { data: pullRequest } = await octokit.rest.pulls.get({

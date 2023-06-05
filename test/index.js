@@ -4,7 +4,7 @@ const { resolve } = require('path')
 
 const PULL_REQUEST_MOCK = require('./pull-request.json')
 const EXPECTED_UPDATE = {
-    body: 'Please pull these awesome changes in!\n\n<!-- appcenter-review-checklist -->\n\ntesting!'
+  body: 'Please pull these awesome changes in!\n\n<!-- appcenter-review-checklist -->\n\ntesting!'
 }
 const PULL_REQUEST_CHECKLIST_MOCK = {
   ...PULL_REQUEST_MOCK,
@@ -49,11 +49,11 @@ test('does not add checklist to PR body with it already included', async (t) => 
 test('adds checklist to PR with null body', async (t) => {
   const pullRequestWithoutBodyMock = require('./pull-request-without-body.json')
   const expectedUpdate = {
-      body: '<!-- appcenter-review-checklist -->\n\ntesting!'
+    body: '<!-- appcenter-review-checklist -->\n\ntesting!'
   }
   const pullRequestWithChecklistMock = {
-      ...pullRequestWithoutBodyMock,
-      ...expectedUpdate
+    ...pullRequestWithoutBodyMock,
+    ...expectedUpdate
   }
 
   nock('https://api.github.com')
