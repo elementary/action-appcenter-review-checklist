@@ -15,10 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node.js for build
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: "lts/*"
 
       - name: Build
         run: |
@@ -26,11 +26,6 @@ jobs:
           npm run build
         env:
           NODE_ENV: production
-
-      - name: Setup Node.js for release
-        uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
 
       - name: Release
         run: |
