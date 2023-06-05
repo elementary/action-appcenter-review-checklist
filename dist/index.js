@@ -9645,7 +9645,7 @@ async function run() {
   const checklist = core.getInput('body', { required: true })
   const newBody = addChecklist(pullRequest.body, checklist)
 
-  const response = await octokit.pulls.update({
+  const response = await octokit.rest.pulls.update({
     owner: context.repo.owner,
     repo: context.repo.repo,
     pull_number: context.payload.pull_request.number,
