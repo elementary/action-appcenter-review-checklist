@@ -12,7 +12,7 @@ function addChecklist (body, checklist) {
 }
 
 async function run () {
-  const octokit = getOctokit(core.getInput('token', { required: true }))
+  const octokit = getOctokit(core.getInput('token', { required: true }), { request: fetch })
 
   const { data: pullRequest } = await octokit.rest.pulls.get({
     owner: context.repo.owner,
