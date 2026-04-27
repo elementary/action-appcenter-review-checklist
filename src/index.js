@@ -12,7 +12,6 @@ function addChecklist (body, checklist) {
 
 async function run () {
   core = await import('@actions/core')
-
   const { context, getOctokit } = await import('@actions/github')
   const octokit = getOctokit(core.getInput('token', { required: true }), { request: fetch })
 
