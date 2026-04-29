@@ -1,8 +1,9 @@
-const test = require('ava')
-const nock = require('nock')
-const { resolve } = require('path')
+import test from 'ava'
+import nock from 'nock'
+import { resolve } from 'path'
+import PULL_REQUEST_MOCK from './pull-request.json' with { type: 'json' }
+import pullRequestWithoutBodyMock from './pull-request-without-body.json' with { type: 'json' }
 
-const PULL_REQUEST_MOCK = require('./pull-request.json')
 const EXPECTED_UPDATE = {
   body: 'Please pull these awesome changes in!\n\n<!-- appcenter-review-checklist -->\n\ntesting!'
 }
@@ -13,17 +14,18 @@ const PULL_REQUEST_CHECKLIST_MOCK = {
 
 let run = null
 
-test.beforeEach(() => {
+test.beforeEach(async () => {
   process.env.INPUT_TOKEN = 'testing'
   process.env.INPUT_BODY = 'testing!'
 
   process.env.GITHUB_REPOSITORY = 'github/testing'
-  process.env.GITHUB_EVENT_PATH = resolve(__dirname, 'webhook.json')
+  process.env.GITHUB_EVENT_PATH = resolve(import.meta.dirname, 'webhook.json')
 
   nock.disableNetConnect()
 
   // We need to load it after setting the process values
-  run = require('../src').run
+  const module = await import('../src/index.js')
+  run = module.run
 })
 
 test('adds checklist to PR body without it', async (t) => {
@@ -47,7 +49,6 @@ test('does not add checklist to PR body with it already included', async (t) => 
 })
 
 test('adds checklist to PR with null body', async (t) => {
-  const pullRequestWithoutBodyMock = require('./pull-request-without-body.json')
   const expectedUpdate = {
     body: '<!-- appcenter-review-checklist -->\n\ntesting!'
   }

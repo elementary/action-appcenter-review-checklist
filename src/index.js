@@ -1,5 +1,5 @@
-const core = require('@actions/core')
-const { context, getOctokit } = require('@actions/github')
+import core from '@actions/core'
+import { context, getOctokit } from '@actions/github'
 
 const BODY_BREAK = '<!-- appcenter-review-checklist -->'
 
@@ -43,9 +43,9 @@ async function run () {
   return true
 }
 
-module.exports = { run }
+export { run }
 
-if (require.main === module) {
+if (import.meta.main) {
   ; (async () => {
     try {
       await run()

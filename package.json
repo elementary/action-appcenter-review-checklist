@@ -4,6 +4,7 @@
   "description": "Adds a checklist to application PRs",
   "private": true,
   "main": "index.js",
+  "type": "module",
   "license": "GPLV3",
   "repository": {
     "type": "git",
