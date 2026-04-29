@@ -1,4 +1,4 @@
-const test = require('ava')
+const { default: test } = require('ava')
 const nock = require('nock')
 const { resolve } = require('path')
 
