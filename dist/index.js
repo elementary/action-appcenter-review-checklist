@@ -17,8 +17,8 @@ function addChecklist (body, checklist) {
 }
 
 async function run () {
-  core = await Promise.all(/* import() */[__nccwpck_require__.e(844), __nccwpck_require__.e(367)]).then(__nccwpck_require__.t.bind(__nccwpck_require__, 7484, 23))
-  const { context, getOctokit } = await Promise.all(/* import() */[__nccwpck_require__.e(844), __nccwpck_require__.e(157)]).then(__nccwpck_require__.bind(__nccwpck_require__, 157))
+  core = await Promise.all(/* import() */[__nccwpck_require__.e(119), __nccwpck_require__.e(78)]).then(__nccwpck_require__.bind(__nccwpck_require__, 3078))
+  const { context, getOctokit } = await Promise.all(/* import() */[__nccwpck_require__.e(119), __nccwpck_require__.e(157)]).then(__nccwpck_require__.bind(__nccwpck_require__, 157))
   const octokit = getOctokit(core.getInput('token', { required: true }), { request: fetch })
 
   const { data: pullRequest } = await octokit.rest.pulls.get({
